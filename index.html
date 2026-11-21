@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Guardians, Masters and Mediators — Talk Trainer</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#edf0f3;--card:#fff;--ink:#1b2430;--mute:#5d6877;--line:#d5dbe2;--g:#2f6b5e;--m:#7a2e57;--d:#2b5c9e;--o:#1b2430;--ok:#2f6b5e;--bad:#b3261e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12171d;--card:#1b222b;--ink:#e8edf2;--mute:#9aa6b4;--line:#2d3743;--g:#6fc2af;--m:#d98ab8;--d:#7fb0ee;--o:#e8edf2;--ok:#6fc2af;--bad:#ff8a80}}
+*{box-sizing:border-box}html{height:100%}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font:17px/1.6 'Newsreader',Georgia,serif}
+h1,h2,button,select,.tag,.score{font-family:'Bricolage Grotesque',system-ui,sans-serif}
+main{max-width:720px;margin:0 auto;padding:18px 16px 70px}
+h1{font-size:1.4rem;line-height:1.2;margin:4px 0}
+.sub{color:var(--mute);margin:0 0 12px;font-size:.95rem}
+.people{display:flex;gap:8px;margin-bottom:10px}.people i{flex:1;height:6px;border-radius:3px}
+.tabs{display:flex;gap:5px;margin:10px 0}
+.tab{flex:1;padding:9px 2px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;font-size:.85rem;cursor:pointer}
+.tab[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;margin-bottom:6px}
+.chip{flex:none;padding:6px 12px;border-radius:999px;border:1.5px solid var(--c);background:var(--card);color:var(--ink);font-size:.85rem;cursor:pointer;font-family:'Bricolage Grotesque',sans-serif}
+.chip[aria-pressed=true]{background:var(--c);color:var(--bg);border-color:var(--c)}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--d);outline-offset:2px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:4px 0 12px}
+.btn,select{padding:8px 13px;border-radius:10px;border:1.5px solid var(--ink);background:var(--card);color:var(--ink);font-size:.88rem;cursor:pointer}
+.btn.p{background:var(--ink);color:var(--bg)}.btn.ok{background:var(--ok);border-color:var(--ok);color:#fff}.btn.no{border-color:var(--bad);color:var(--bad)}
+select{max-width:100%}
+.para{background:var(--card);border-left:6px solid var(--c);border-radius:8px;padding:10px 14px;margin:0 0 10px}
+.para.now{outline:3px solid var(--c)}
+.para b{font-weight:600;color:var(--c);background:color-mix(in srgb,var(--c) 14%,transparent);padding:0 3px;border-radius:3px}
+.kw .para span{opacity:.28}
+.cover .para .tx{display:none}.cover .para.open .tx{display:inline}
+.badge{display:inline-block;font:.72rem 'Bricolage Grotesque',sans-serif;border:1px solid var(--c);color:var(--c);border-radius:6px;padding:0 6px;margin-right:6px}
+.tag{font-size:.8rem;color:var(--mute);margin:0 0 4px}
+.pp{float:right;border:0;background:none;color:var(--c);font-size:1.1rem;cursor:pointer}
+input.gap{font:inherit;width:var(--w);min-width:3em;border:0;border-bottom:2px solid var(--c);background:color-mix(in srgb,var(--c) 10%,transparent);color:var(--ink);padding:0 3px;text-align:center;border-radius:3px}
+input.gap.right{border-bottom-color:var(--ok);background:color-mix(in srgb,var(--ok) 22%,transparent)}
+input.gap.wrong{border-bottom-color:var(--bad);background:color-mix(in srgb,var(--bad) 18%,transparent)}
+textarea{width:100%;min-height:90px;font:inherit;padding:10px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);margin-top:10px}
+.card{background:var(--card);border-radius:14px;padding:20px 18px;border-top:8px solid var(--c);min-height:200px}
+.q{font-size:1.25rem;line-height:1.45}.a{margin-top:14px;padding-top:12px;border-top:1px dashed var(--line)}
+.prog{height:8px;background:var(--line);border-radius:4px;overflow:hidden;margin:6px 0 12px}.prog div{height:100%;background:var(--ok);transition:width .3s}
+.res{margin-top:10px;font-family:'Bricolage Grotesque',sans-serif;font-weight:700}
+.big{font:700 2.6rem 'Bricolage Grotesque',sans-serif;text-align:center;margin:10px 0}
+.tip{color:var(--mute);font-size:.9rem}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<main>
+<div class="people"><i style="background:var(--g)"></i><i style="background:var(--m)"></i><i style="background:var(--d)"></i></div>
+<h1>Guardians, Masters and Mediators</h1>
+<p class="sub">Talk trainer: read a chunk, listen, fill gaps, write from cues, recite, then run it on stage.</p>
+<div class="tabs" id="tabs"></div>
+<div class="chips" id="chips"></div>
+<div id="view"></div>
+</main>
+<script>
+var G='var(--g)',M='var(--m)',D='var(--d)',O='var(--o)';
+var P=[
+{n:'1 Opening',c:O,t:3,L:[
+'!Good afternoon. Let me begin not with a [[law]], but with [[three people]].',
+'The first is a reindeer herder in [[Fosen]], in central Norway. Every winter she moves her animals across land that her family has used for centuries. One day, [[wind turbines]] appear on that land.',
+'The second is a [[Makuxi]] grandmother in Raposa Serra do Sol, in the far north of Brazil, near the border with Venezuela and Guyana. She has never lived anywhere else. One day, a court in Brasília has to decide whether that land is hers, and under what conditions.',
+'The third is a schoolboy in Lusatia, not far from here, in eastern Germany. He is [[Sorbian]]. At school, he learns in a language that only a few tens of thousands of people still speak.',
+'What do these three people have in common? They live under very different legal systems. They speak very different languages. But each of them depends on one question that the law has to answer: is culture a [[detail]] of their rights, or is it the [[ground]] on which their rights stand?',
+'My doctoral thesis, which I defended in Brazil in 2017, was an attempt to answer that question for indigenous peoples in Brazil. The project that brings me to Heidelberg tries to take that answer one step further, by comparing the inter-American and the European human rights systems.',
+'Today I will tell you one story in three movements. The main one is about the [[guardians]]: who guards the rights of culturally diverse peoples, and with which instrument. Then, briefly, the [[masters]]: a supreme court that behaves more like the owner of the Constitution than its guardian. And finally, the [[mediators]]: when the conflict leaves the courtroom for the negotiating table.',
+'My argument has three steps. First: cultural diversity and human rights reinforce each other, I call this [[mutualism]], and an expanded conventionality control can make it enforceable. Second: when a court claims to be the master of the Constitution, that device fails. Third: consensual procedures can repair the failure, but only under [[conditions]].']},
+{n:'2 Guardians I',c:G,t:2.75,L:[
+'Before I show you the timeline, a small exercise. Think for a moment of one object, one song, one food or one word that you would never want your grandchildren to lose. Hold it in your mind. Whatever you chose, you have just identified a [[cultural expression]], and, I will argue, a part of your [[dignity]].',
+'Lawyers are not very good at culture: we like definitions, and culture resists them. So I went to the institution that has spent eighty years trying to define it, UNESCO, and found a story in five chapters.',
+'In 1945, since wars begin in the minds of men, culture is an instrument of [[peace]]. In 1966, every culture has a value that must be respected: a matter of [[dignity]]. In 1982, in Mexico City, cultural identity meets [[development]]. In 2001, culture becomes a way of life, and diversity a common [[heritage]] of humanity. And in 2005, a convention born from a trade dispute, the French “cultural exception”, ties cultural diversity to human [[rights]] and fundamental freedoms.',
+'Peace, dignity, development, heritage, rights. Here is the first idea I want you to take home. In biology, [[mutualism]] is a relationship between two species in which both benefit. The bee and the flower. I propose that cultural diversity and human rights live in mutualism. Human rights protect the freedom of individuals and communities to keep and develop their cultural expressions. And cultural diversity is the concrete space, the [[soil]], in which dignity actually grows.',
+'Take away culture, and human rights become [[abstract]], a set of promises addressed to nobody in particular. Take away human rights, and culture can become a [[prison]], tradition used against the individual. Together, they protect each other.',
+'~Anthropologists call the way a person becomes a person inside a culture enculturation. If the law destroys that community, it does not simply take away land or property. It takes away the place where people learn to be persons. That is why, for indigenous peoples, a land dispute is never only a land dispute.',
+'But a beautiful idea is not yet a legal remedy. Which legal instrument can make this mutualism work in the courts and administrations of a real State?']},
+{n:'3 Guardians II',c:G,t:2.75,L:[
+'My answer is: [[conventionality control]], the duty of domestic authorities to measure national law against the American Convention on Human Rights, as interpreted by the Inter-American Court.',
+'The Court built it like a house, room by room. In 2006, in Almonacid Arellano v. Chile, judges must exercise “a sort of conventionality control”, modest words, a bold idea. The same year, in Trabajadores Cesados, they must do it [[ex officio]]. In 2010, in Cabrera García, the duty reaches all bodies linked to the administration of justice. And in 2011, in Gelman v. Uruguay, an amnesty confirmed twice by popular vote, human rights become a [[limit]] on what majorities may decide, and control becomes the task of any public authority.',
+'For Brazil, one case shows what happens when a court ignores this duty. In April 2010, the Brazilian Supreme Court upheld the amnesty law of the dictatorship. In November, in Gomes Lund v. Brazil, the Inter-American Court declared the same law incompatible with the Convention. Two courts. One law. [[Seven months]] apart. Opposite answers.',
+'Let me be clear: I do not read it as a hierarchy, with the Inter-American Court on top. I read it as [[dialogic guardianship]], resting on principles the Convention and the Brazilian Constitution share: good faith, effet utile, interpretation in conformity, and above all the [[pro persona]] principle.',
+'Pro persona is the heart of it. When two norms can apply, apply the one that best [[protects]] the person. Notice what this does. It removes the question “which court is higher?” and replaces it with the question “which [[norm]] protects better?”. The question of hierarchy is not answered. It is [[dissolved]].',
+'So conventionality control does not create one guardian. It creates a [[network]] of guardians, every judge, in every court, within his or her jurisdiction.',
+'~On paper, the Brazilian order is open: since 2008, human rights treaties have at least supralegal rank, above ordinary statutes. So why does almost nobody walk through that open door? Not only because of political resistance to a “foreign” court, but because of lack of knowledge, lack of internal guidelines and, more deeply, a legal culture still attached to the monocultural nation-state: one people, one law, one source of law. A guardian who believes that only the State produces law will not look beyond the State for the standard he must guard.']},
+{n:'4 Guardians III',c:G,t:3,L:[
+'Now, my own contribution: [[two expansions]].',
+'The first is about what we [[measure]]. Not the American Convention alone, but the whole body of human rights law in force in the country: for indigenous peoples, ILO Convention 169, the 2005 UNESCO Convention, the UN Declaration on the Rights of Indigenous Peoples, and the inter-American case law, including cases against other States.',
+'The second is about who [[measures]]. Following Gelman, the legislator before voting a bill, and the administrator when designing a demarcation procedure. But I draw a line. The duty to respect human rights binds [[everyone]]. The duty to control requires [[competence]]: a controlling act and a controlled act. If every official can set aside any norm in the name of the Convention, we do not get more rights, we get more arbitrariness. So we need guidelines, and training. A guardian who does not know the standard cannot guard it.',
+'And what is the standard for indigenous peoples? In 2001, in Awas Tingni v. Nicaragua, the Court read Article 21 as protecting [[communal property]]: land as a material and spiritual element, to be passed on to future generations.',
+'In 2005, in Yakye Axa v. Paraguay, one image. For years, the families of the community lived on a strip of land beside a highway in the Paraguayan Chaco, between the asphalt and the fence of the ranch that occupied their traditional territory. Without their land, they could not hunt, fish or gather; children and elders died of preventable illnesses. The Court linked territory to cultural identity and to the right to a dignified life, [[vida digna]]. A people that loses its land does not only become poorer. It risks ceasing to exist as a people.',
+'Saramaka v. Suriname, 2007, added consultation and, for large projects, [[consent]]. And Xucuru v. Brazil, 2018, condemned Brazil for the delay in securing the Xucuru territory. Do you see the pattern? Culture is not an ornament on top of the right to property. Culture is the [[key]] that opens the right. That is mutualism in judicial form. That is the standard against which to measure Brasília.']},
+{n:'5 Masters',c:M,t:2.75,L:[
+'Let us go back to the Makuxi grandmother.',
+'In 2009, in the Raposa Serra do Sol case, the Brazilian Supreme Court confirmed the demarcation of her land as one continuous territory. In many ways, a victory. But the Court also added [[nineteen conditions]], condicionantes, that were not written in the Constitution, not written in any statute, and were never discussed with the peoples concerned. Among them, a [[temporal framework]]: indigenous peoples would have rights over the lands they occupied on the 5th of October 1988, the day the Constitution was promulgated. And the inter-American standards I have just described were almost absent from the reasoning.',
+'This is what I call the [[master]]. A guardian applies a standard that he did not create, and listens to those he protects. A master writes the standard, declares himself its final interpreter, and does not need to listen. In Raposa Serra do Sol, the Court was not only guarding the Constitution. It was completing it, in the place of the legislator, and without the voice of the people concerned.',
+'And masters attract other masters. In September 2023, the Supreme Court itself rejected the temporal framework thesis. Within weeks, Congress adopted [[Law 14.701]], which reinstated it, and in December 2023 overrode the presidential veto. In December 2025, the Court again declared unconstitutional the provisions that brought the temporal framework back. That same month, the Senate approved a Proposed Constitutional Amendment ([[PEC 48]]), to write the temporal framework into the Constitution itself; it is now before the Chamber of Deputies.',
+'Court against Congress, Congress against Court, each claiming the last word. And the Makuxi grandmother, who should be at the centre of the conversation, is nowhere in it. When everybody wants to be the master, nobody remains a [[guardian]].']},
+{n:'6 Mediators',c:D,t:3,L:[
+'Here complementing my researcher life comes my experience as judicial mediator and a facilitator of peace building culture. So I look at what came next with two eyes.',
+'Facing the deadlock, the rapporteur did not suspend the law. He opened a [[conciliation chamber]] inside the Court itself. Between August 2024 and June 2025 it held twenty-three hearings and ended with a draft bill to amend the law. Indigenous organisations denounced what they called a “forced conciliation”.',
+'Now let us go back to the reindeer herder in Fosen. In 2021, the Norwegian Supreme Court held that the licences for the wind farms violated the Sámi herders’ right to enjoy their culture, under [[Article 27]] of the International Covenant on Civil and Political Rights. Then came mediation. In December 2023 and March 2024, agreements: additional grazing land, compensation, and a [[veto]] for the herders over any extension of the licences.',
+'Two tables. In Fosen, the mediators sat down after the guardian had spoken: the right was not on the table, only the [[remedy]]. In Brasília, the guardian had also spoken, in 2023. But the law that contradicted it remained in force while the table discussed it. The [[right]] itself was on the table.',
+'This is the question of my research in Heidelberg: when do consensual procedures strengthen, rather than dilute, conventionality control? My working answer: [[five conditions]] of conventional validity.',
+'One: [[participation]] of the community through its own institutions, as ILO 169 and Saramaka require. Two: a non-negotiable conventional [[minimum]], the pro persona floor is not a bargaining chip. Three: correction of power [[asymmetries]], a village and an agribusiness lobby are not equals at a table. Four: judicial [[supervision]] of the agreement and of its execution. Five: cultural [[adequacy]], the community’s language, time and ways of deciding.',
+'~Both regional systems already have a mediating channel: the friendly settlement under Article 48(section 1)(f) of the American Convention, and under Article 39 of the European Convention, supervised by the Committee of Ministers. Brazilian inter-American settlements have included structural commitments, legislation, public policies. Whether the European design can do the same for collective cultural rights is what I came here to study.',
+'A mediator, then, is not the opposite of a guardian. A good mediator is a guardian who sits at the same [[height]] as the parties.']},
+{n:'7 Closing',c:O,t:2.75,L:[
+'Three sentences. Guardians: culture and human rights live in mutualism, and an expanded conventionality control builds a network of guardians around pro persona. Masters: when a court, or a parliament, claims the last word, without dialogic process, the network breaks. Mediators: consensual procedures can repair it, if the conventional minimum stays off the table.',
+'Now let me turn the question towards Europe. Because this is also why I am here.',
+'First. Does the European [[margin of appreciation]] work as the counterpart of conventionality control, or as its opposite? It seems to me that the inter-American system tends to multiply the guardians, while the European system tends to widen the deference.',
+'Second. In [[Görgülü]], in 2004, the Federal Constitutional Court said German authorities must take into account the judgments of the European Court. Taking into account is not controlling. What difference does that make for minorities, for the Sorbian schoolboy?',
+'Third. Can European friendly settlements, with the Framework Convention on National Minorities and the Faro Convention, carry collective and [[structural]] remedies for cultural rights, or do they remain individual and monetary?',
+'Let me go back to the three people. The reindeer herder in Fosen, whose mediators sat down after the guardians had spoken. The Makuxi grandmother, still waiting while the masters argue. The Sorbian schoolboy, whose guardians are here, in Europe, and I hope to learn from you how they work.',
+'Each of them needs not one master, but a network of guardians, judges, legislators, administrators, and mediators, who know the standards and apply them in good faith.',
+'!Culture is not the decoration of rights. Culture is their [[soil]]. And conventionality control, properly expanded, is one of the instruments we have to keep that soil alive. Thank you very much. I look forward to your questions.']}
+];
+var MODES=[['read','Read'],['gaps','Gaps'],['write','Write'],['recite','Recite'],['stage','Stage']];
+var mode='read',sel=1,view='full',hard=false,wl='half',chain=false,deck=[],di=0,shown=false,known=0,total=0,miss={},cur=-1,vo=null,rate=1,tm=null,st=null;
+var $=function(s){return document.querySelector(s)};
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+function clean(s){return s.replace(/^[!~]/,'').replace(/\[\[|\]\]/g,'')}
+function norm(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]/g,'')}
+function parts(){var o=[];P.forEach(function(p,i){var k=i+1;if(sel==0||k==sel||(chain&&k<sel))o.push(i)});return o}
+function paras(){var o=[];parts().forEach(function(i){P[i].L.forEach(function(t,j){o.push({id:i+'-'+j,t:t,c:P[i].c,n:P[i].n,i:i})})});return o}
+function sents(){var o=[];paras().forEach(function(p){clean(p.t).length;p.t.replace(/^[!~]/,'').replace(/ v\. /g,' v.\u0001').split(/(?<=[.?!”])\s+(?=[A-Z“])/).forEach(function(s){o.push({t:s.replace(/\u0001/g,' '),c:p.c,n:p.n})})});return o}
+function hl(t){return esc(t.replace(/^[!~]/,'')).replace(/\[\[(.+?)\]\]/g,'<b>$1</b>')}
+function shuffle(a){return a.sort(function(){return Math.random()-.5})}
+function head(){
+ $('#tabs').innerHTML=MODES.map(function(m){return '<button class="tab" data-m="'+m[0]+'" aria-pressed="'+(m[0]==mode)+'">'+m[1]+'</button>'}).join('');
+ var h='';if(mode!='read'&&mode!='stage')h+='<button class="chip" style="--c:var(--o)" data-i="0" aria-pressed="'+(sel==0)+'">All</button>';
+ P.forEach(function(p,i){h+='<button class="chip" style="--c:'+p.c+'" data-i="'+(i+1)+'" aria-pressed="'+(sel==i+1)+'">'+p.n+'</button>'});
+ $('#chips').style.display=mode=='stage'?'none':'flex';$('#chips').innerHTML=h;
+}
+function render(){stopA();head();var v=$('#view');({read:read,gaps:gaps,write:write,recite:recite,stage:stage})[mode](v)}
+/* READ + AUDIO */
+function read(v){
+ var p=P[sel-1];
+ var h='<div class="bar"><button class="btn'+(view=='full'?' p':'')+'" data-v="full">Full text</button><button class="btn'+(view=='kw'?' p':'')+'" data-v="kw">Key words</button><button class="btn'+(view=='cover'?' p':'')+'" data-v="cover">Cover</button></div>';
+ h+='<div class="bar"><button class="btn p" id="play">▶ Listen to this part</button><button class="btn" id="pause">Pause</button><button class="btn no" id="stop">Stop</button><select id="rate" aria-label="Speed"><option value="0.85">0.85x</option><option value="1" selected>1x</option><option value="1.15">1.15x</option></select><select id="voice" aria-label="Voice"></select></div>';
+ h+='<p class="tip">Listen like a podcast, then read it aloud with the audio. In Cover mode, tap a paragraph only after you tried to say it.</p><div class="'+view+'" id="paras">';
+ p.L.forEach(function(t,j){var a=t[0]=='!',o=t[0]=='~';h+='<div class="para" id="p'+j+'" style="--c:'+p.c+'">'+(a?'<span class="badge">word for word</span>':'')+(o?'<span class="badge">optional</span>':'')+'<button class="pp" data-j="'+j+'" aria-label="Play from here">▶</button><span class="tx">'+hl(t)+'</span>'+(view=='cover'?'<span class="tag"> tap to reveal</span>':'')+'</div>'});
+ v.innerHTML=h+'</div>';fillVoices();
+}
+function fillVoices(){
+ var vs=speechSynthesis.getVoices().filter(function(x){return /^en/i.test(x.lang)});
+ vs.sort(function(a,b){return (/en[-_]US/i.test(b.lang)?1:0)-(/en[-_]US/i.test(a.lang)?1:0)});
+ var male=/david|mark|guy|alex|aaron|fred|tom\b|james|evan|ryan|male|daniel|eric|davis|roger/i,fem=/female|zira|samantha|aria|jenny|susan|karen|moira|allison|ava|nicky/i;
+ if(!vo||vs.indexOf(vo)<0)vo=vs.filter(function(x){return /en[-_]US/i.test(x.lang)&&male.test(x.name)&&!fem.test(x.name)})[0]||vs[0]||null;
+ var s=$('#voice');if(!s)return;
+ s.innerHTML=vs.map(function(x,i){return '<option value="'+i+'"'+(x==vo?' selected':'')+'>'+x.name+' ('+x.lang+')</option>'}).join('')||'<option>No voices found</option>';
+ s._v=vs;
+}
+if('speechSynthesis' in window)speechSynthesis.onvoiceschanged=function(){fillVoices()};
+function playFrom(j){
+ stopA();var L=P[sel-1].L;
+ (function go(i){
+  if(i>=L.length){mark(-1);return}
+  mark(i);var u=new SpeechSynthesisUtterance(clean(L[i]));u.lang='en-US';if(vo)u.voice=vo;u.rate=rate;u.pitch=.9;
+  u.onend=function(){if(cur==i)go(i+1)};speechSynthesis.speak(u);
+ })(j);
+}
+function mark(i){cur=i;document.querySelectorAll('.para').forEach(function(e,k){e.classList.toggle('now',k==i)});if(i>=0){var e=$('#p'+i);if(e)e.scrollIntoView({block:'center',behavior:'smooth'})}}
+function stopA(){cur=-1;if('speechSynthesis' in window)speechSynthesis.cancel()}
+/* GAPS */
+function gaps(v){
+ var h='<div class="bar"><button class="btn'+(hard?' p':'')+'" id="hard">'+(hard?'Hard: extra blanks':'Easy: key words')+'</button><button class="btn p" id="check">Check</button><button class="btn" id="show">Show answers</button><button class="btn" id="clr">Clear</button><span class="score" id="sc"></span></div><p class="tip">Key words are blanked. Hard mode also blanks every fourth word.</p>';
+ sents().forEach(function(s){
+  var t=s.t.split(/(\[\[.+?\]\])/).map(function(seg){
+   var m=seg.match(/^\[\[(.+)\]\]$/);if(m)return inp(m[1]);
+   if(!hard)return esc(seg);
+   return seg.split(' ').map(function(w,k){return (k%4==3&&norm(w).length>3)?inp(w.replace(/[.,;:?!“”]+$/,''))+(w.match(/[.,;:?!“”]+$/)||[''])[0]:esc(w)}).join(' ');
+  }).join('');
+  h+='<div class="para" style="--c:'+s.c+'"><div class="tag">'+s.n+'</div>'+t+'</div>';
+ });
+ v.innerHTML=h;
+}
+function inp(a){return '<input class="gap" style="--w:'+(a.length*.6+1.6)+'em" data-a="'+a.replace(/"/g,'')+'" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="gap">'}
+function checkAll(rev){
+ var ok=0,all=document.querySelectorAll('input.gap');
+ all.forEach(function(i){if(rev&&norm(i.value)!=norm(i.dataset.a))i.value=i.dataset.a;if(!i.value){i.className='gap';return}var r=norm(i.value)==norm(i.dataset.a);if(r)ok++;i.className='gap '+(r?'right':'wrong')});
+ $('#sc').textContent=ok+' / '+all.length;
+}
+/* WRITE */
+function write(v){
+ if(!deck.length||deck.mode!='w'){deck=shuffle(sents().filter(function(s){return clean(s.t).split(' ').length>=7}));deck.mode='w';di=0;shown=false;known=0;total=deck.length}
+ if(di>=deck.length){v.innerHTML='<div class="card" style="--c:var(--o)"><div class="big">Done</div><p style="text-align:center">'+total+' sentences written.</p></div><div class="bar" style="margin-top:12px"><button class="btn p" id="again">Shuffle and restart</button></div>';return}
+ var s=deck[di],w=clean(s.t).split(' '),n=wl=='half'?Math.ceil(w.length/2):3;
+ var h='<div class="bar"><button class="btn'+(wl=='half'?' p':'')+'" data-w="half">Complete the sentence</button><button class="btn'+(wl=='start'?' p':'')+'" data-w="start">Only the start</button></div>';
+ h+='<div class="prog"><div style="width:'+(known/total*100)+'%"></div></div><div class="card" style="--c:'+s.c+'"><div class="tag">'+s.n+' · '+(di+1)+' of '+total+'</div><div class="q">'+esc(w.slice(0,n).join(' '))+' …</div><textarea id="ans" placeholder="Write the whole sentence from memory" aria-label="Your sentence"></textarea><div id="out"></div></div>';
+ h+='<div class="bar" style="margin-top:12px"><button class="btn p" id="wcheck">Check</button><button class="btn" id="wnext">Next</button></div>';
+ v.innerHTML=h;
+}
+function wcheck(){
+ var s=deck[di],tw=clean(s.t).split(/\s+/).map(norm).filter(Boolean),aw=$('#ans').value.split(/\s+/).map(norm).filter(Boolean),bag={};
+ aw.forEach(function(x){bag[x]=(bag[x]||0)+1});var hit=0;tw.forEach(function(x){if(bag[x]>0){bag[x]--;hit++}});
+ var r=Math.round(hit/tw.length*100);
+ if(r>=80&&!s.done){s.done=1;known++}
+ $('#out').innerHTML='<div class="res" style="color:var('+(r>=80?'--ok':'--bad')+')">'+r+'% of the words matched</div><div class="a">'+hl(s.t)+'</div>';
+}
+/* RECITE */
+function recite(v){
+ if(!deck.length||deck.mode!='r'){deck=shuffle_if(paras());deck.mode='r';di=0;shown=false;known=0;total=deck.length}
+ if(di>=deck.length){var n=Object.keys(miss).length;v.innerHTML='<div class="card" style="--c:var(--o)"><div class="big">Round complete</div><p style="text-align:center">'+(n?n+' trouble spots marked. Drill only those next.':'No trouble spots. Try the Stage tab.')+'</p></div><div class="bar" style="margin-top:12px">'+(n?'<button class="btn p" id="drill">Drill trouble spots</button>':'')+'<button class="btn" id="again">Restart</button></div>';return}
+ var l=deck[di],w=clean(l.t).split(' ');
+ var h='<div class="bar"><button class="btn'+(chain?' p':'')+'" id="chain">Chain parts 1 → N: '+(chain?'on':'off')+'</button><button class="btn'+(deck.order?' p':'')+'" id="ord">'+(deck.order?'In order':'Shuffled')+'</button></div>';
+ h+='<div class="prog"><div style="width:'+(known/total*100)+'%"></div></div><div class="card" style="--c:'+l.c+'"><div class="tag">'+l.n+' · '+(l.t[0]=='!'?'word for word · ':'')+(di+1)+' of '+total+'</div><div class="q">'+esc(w.slice(0,3).join(' '))+' …</div><p class="tip">Say it out loud, then reveal. Missed lines go to your trouble spots.</p>';
+ if(shown)h+='<div class="a">'+hl(l.t)+'</div>';
+ h+='</div><div class="bar" style="margin-top:12px">'+(shown?'<button class="btn ok" id="got">I had it</button><button class="btn no" id="miss">Missed</button>':'<button class="btn p" id="rev">Reveal</button>')+'</div>';
+ v.innerHTML=h;
+}
+function shuffle_if(a){return a}
+/* STAGE */
+function stage(v){
+ if(!st){v.innerHTML='<div class="card" style="--c:var(--o)"><h2>Run-through</h2><p>Stand up, no script. Only key-word cues appear. Speak each part out loud, then tap Next part. Target: 20 minutes.</p><p class="tip">Tip: record yourself on your phone and listen back, or perform for a friend.</p></div><div class="bar" style="margin-top:12px"><button class="btn p" id="go">Start the clock</button></div>';return}
+ if(st.k>=P.length){var tot=0,h='<div class="card" style="--c:var(--o)"><h2>Finished</h2>';st.log.forEach(function(s,i){tot+=s;h+='<div>'+P[i].n+': '+fmt(s)+' <span class="tip">(target '+fmtm(P[i].t)+')</span></div>'});
+  v.innerHTML=h+'<div class="big">'+fmt(tot)+'</div><p style="text-align:center" class="tip">Target total 20:00</p></div><div class="bar" style="margin-top:12px"><button class="btn p" id="go">Run again</button></div>';return}
+ var p=P[st.k],cues=[];p.L.forEach(function(t){(t.match(/\[\[(.+?)\]\]/g)||[]).forEach(function(m){cues.push(m.slice(2,-2))})});
+ v.innerHTML='<div class="card" style="--c:'+p.c+'"><div class="tag">'+p.n+' · target '+fmtm(p.t)+'</div><div class="big" id="clk">0:00</div><div class="q">'+esc(cues.join(' · '))+'</div></div><div class="bar" style="margin-top:12px"><button class="btn p" id="nextp">'+(st.k==P.length-1?'Finish':'Next part')+'</button><button class="btn no" id="quit">Quit</button></div>';
+}
+function fmt(s){s=Math.round(s);return Math.floor(s/60)+':'+('0'+s%60).slice(-2)}
+function fmtm(m){return fmt(m*60)}
+function tick(){if(!st)return;var e=(Date.now()-st.t0)/1000,c=$('#clk');if(c)c.textContent=fmt(e)}
+document.addEventListener('click',function(e){
+ var t=e.target.closest('button');if(!t)return;
+ var d=t.dataset;
+ if(d.m){mode=d.m;deck=[];if(mode=='stage'){st=null;clearInterval(tm)}if(sel==0&&(mode=='read'))sel=1;render();return}
+ if(d.i!==undefined){sel=+d.i;deck=[];render();return}
+ if(d.v){view=d.v;render();return}
+ if(d.w){wl=d.w;render();return}
+ if(d.j!==undefined){playFrom(+d.j);return}
+ if(t.classList.contains('pp'))return;
+ switch(t.id){
+ case'play':playFrom(0);break;
+ case'pause':if(speechSynthesis.paused)speechSynthesis.resume();else speechSynthesis.pause();break;
+ case'stop':stopA();mark(-1);break;
+ case'hard':hard=!hard;render();break;
+ case'check':checkAll(false);break;case'show':checkAll(true);break;case'clr':render();break;
+ case'wcheck':wcheck();break;
+ case'wnext':di++;render();break;
+ case'again':deck=[];render();break;
+ case'chain':chain=!chain;deck=[];render();break;
+ case'ord':var o=!deck.order;deck=paras();if(!o)shuffle(deck);deck.order=o;deck.mode='r';di=0;known=0;total=deck.length;shown=false;render();break;
+ case'rev':shown=true;render();break;
+ case'got':known++;delete miss[deck[di].id];di++;shown=false;render();break;
+ case'miss':miss[deck[di].id]=1;di++;shown=false;render();break;
+ case'drill':var ids=Object.keys(miss);deck=paras().filter(function(p){return miss[p.id]});deck.mode='r';miss={};di=0;known=0;total=deck.length;render();break;
+ case'go':st={k:0,t0:Date.now(),log:[]};clearInterval(tm);tm=setInterval(tick,500);render();break;
+ case'nextp':st.log.push((Date.now()-st.t0)/1000);st.k++;st.t0=Date.now();if(st.k>=P.length)clearInterval(tm);render();break;
+ case'quit':st=null;clearInterval(tm);render();break;
+ }
+});
+document.addEventListener('click',function(e){var p=e.target.closest('#paras .para');if(p&&view=='cover'&&!e.target.closest('button'))p.classList.toggle('open')});
+document.addEventListener('change',function(e){
+ if(e.target.id=='rate'){rate=+e.target.value}
+ if(e.target.id=='voice'){vo=e.target._v[+e.target.value]}
+});
+document.addEventListener('keydown',function(e){
+ if(e.key=='Enter'&&e.target.classList&&e.target.classList.contains('gap')){var a=[].slice.call(document.querySelectorAll('input.gap')),i=a.indexOf(e.target);(a[i+1]||e.target).focus()}
+});
+render();
+</script>
+</body>
+</html>
